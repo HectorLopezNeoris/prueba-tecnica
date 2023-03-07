@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/drawable-v24/ic_logo_tmdb.xml" value="0.2703125" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/activity_main.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_details_movie_dialog.xml" value="0.4" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_empty_list_dialog.xml" value="0.4" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_gallery.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_map.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_movies.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_no_data_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_popular_movies.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_profile.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/fragment_top_rated_movies.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/layout/item_movie.xml" value="0.3368606701940035" />
+        <entry key="..\:/Users/HECTOR.LGARCIA/AndroidStudioProjects/PruebaTecnica/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">PruebaTecnica</string>
+    <string name="profile_fragment">This is Profile Fragment</string>
+    <string name="movies_fragment">This is Movies Fragment</string>
+    <string name="map_fragment">This is Map Fragment</string>
+    <string name="gallery_fragment">This is Gallery Fragment</string>
+
+    <string name="no_data_title_dialog">No Data</string>
+    <string name="no_data_message_dialog">No movie data found, please check later.</string>
+    <string name="no_data_confirm_dialog">OK</string>
+
+    <string name="details_movie_overview_dummy_dialog">A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.</string>
+    <string name="item_navigation_profile">Profile</string>
+    <string name="item_navigation_movies">Movies</string>
+    <string name="item_navigation_map">Map</string>
+    <string name="item_navigation_gallery">Gallery</string>
+
+</resources>
