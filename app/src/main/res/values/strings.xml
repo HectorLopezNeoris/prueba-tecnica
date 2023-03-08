@@ -15,4 +15,7 @@
     <string name="item_navigation_map">Map</string>
     <string name="item_navigation_gallery">Gallery</string>
 
+    <string name="map_fragment_button_see_locations">Update locations</string>
+    <string name="map_fragment_button_message_locations">5 most recent uploaded</string>
+
 </resources>

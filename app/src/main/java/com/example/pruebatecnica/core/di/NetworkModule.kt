@@ -18,7 +18,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Credentials.BASE_URL)
+            .baseUrl(Credentials.BASE_URL_TMDB)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

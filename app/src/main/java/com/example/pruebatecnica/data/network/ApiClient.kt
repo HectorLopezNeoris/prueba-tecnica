@@ -10,14 +10,14 @@ interface ApiClient {
 
     @GET(value = "3/movie/popular?")
     suspend fun getPopularMovies(
-        @Query("api_key") apiKey: String = Credentials.API_KEY,
+        @Query("api_key") apiKey: String = Credentials.API_KEY_TMDB,
         @Query("language") language: String = "es-ES",
         @Query("page") page: Int = 1
     ): Response<ListMoviesModel>
 
     @GET(value = "3/movie/top_rated?")
     suspend fun getTopRatedMovies(
-        @Query("api_key") apiKey: String = Credentials.API_KEY,
+        @Query("api_key") apiKey: String = Credentials.API_KEY_TMDB,
         @Query("language") language: String = "es-ES",
         @Query("page") page: Int = 1
     ): Response<ListMoviesModel>

@@ -14,7 +14,7 @@ data class MovieItem(
 )
 
 fun Movies.toDomain(): MovieItem {
-    val poster = "${Credentials.PATH_IMG}${this.posterPath}"
+    val poster = "${Credentials.PATH_IMG_TMDB}${this.posterPath}"
     return MovieItem(
         id = id,
         title = title,
@@ -25,7 +25,7 @@ fun Movies.toDomain(): MovieItem {
 }
 
 fun PopularMovieEntity.toDomain(): MovieItem {
-    val poster = "${Credentials.PATH_IMG}${this.posterPath}"
+    val poster = "${Credentials.PATH_IMG_TMDB}${this.posterPath}"
     return MovieItem(
         id = id,
         title = title,
@@ -36,7 +36,7 @@ fun PopularMovieEntity.toDomain(): MovieItem {
 }
 
 fun TopRatedMovieEntity.toDomain(): MovieItem {
-    val poster = "${Credentials.PATH_IMG}${this.posterPath}"
+    val poster = "${Credentials.PATH_IMG_TMDB}${this.posterPath}"
     return MovieItem(
         id = id,
         title = title,

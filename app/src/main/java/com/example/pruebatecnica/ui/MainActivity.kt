@@ -2,6 +2,7 @@ package com.example.pruebatecnica.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -32,5 +33,15 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.i("MAIN_ACTIVITY", "app reanudada")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i("MAIN_ACTIVITY", "app pausada!!!!")
     }
 }
