@@ -156,7 +156,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
             }
     }
 
-    private fun createMarker(latLng: LatLng, date: Date) {
+    private fun createMarker(latLng: LatLng) {
         map.addMarker(MarkerOptions().position(latLng))
         map.animateCamera(
             CameraUpdateFactory.newLatLngZoom(latLng, 12f),

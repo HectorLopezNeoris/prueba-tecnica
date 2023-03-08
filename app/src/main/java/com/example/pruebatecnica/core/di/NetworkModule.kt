@@ -2,6 +2,8 @@ package com.example.pruebatecnica.core.di
 
 import com.example.pruebatecnica.core.Credentials
 import com.example.pruebatecnica.data.network.ApiClient
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,6 +29,18 @@ object NetworkModule {
     @Provides
     fun provideApiClient(retrofit: Retrofit): ApiClient {
         return retrofit.create(ApiClient::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirebaseStorage(): FirebaseStorage {
+        return FirebaseStorage.getInstance()
+    }
+
+    @Singleton
+    @Provides
+    fun provideFirebaseFirestore(): FirebaseFirestore {
+        return FirebaseFirestore.getInstance()
     }
 
 

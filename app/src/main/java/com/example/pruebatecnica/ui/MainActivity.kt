@@ -1,5 +1,6 @@
 package com.example.pruebatecnica.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -35,13 +36,8 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.i("MAIN_ACTIVITY", "app reanudada")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
-    override fun onPause() {
-        super.onPause()
-        Log.i("MAIN_ACTIVITY", "app pausada!!!!")
-    }
 }
