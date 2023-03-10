@@ -35,11 +35,13 @@ class TopRatedMoviesFragment : Fragment() {
     private fun initRecyclerView(_listMovies: List<MovieItem>) {
         val recyclerView = _binding!!.rvTopRatedMovies
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        recyclerView.adapter = MovieAdapter(_listMovies.toMutableList())
+        val movieAdapter: MovieAdapter = MovieAdapter()
+        movieAdapter.submitList(_listMovies)
+        recyclerView.adapter = movieAdapter
     }
 
     private fun executeService() {
-        topRatedMoviesViewModel.getAllTopRatedMovies(1) {
+        topRatedMoviesViewModel.getAllTopRatedMovies() {
             when(it) {
                 GetMoviesStatus.Loading -> binding.progressBar.visibility = View.VISIBLE
                 GetMoviesStatus.Done -> binding.progressBar.visibility = View.INVISIBLE

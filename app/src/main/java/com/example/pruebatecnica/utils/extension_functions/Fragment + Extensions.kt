@@ -21,6 +21,15 @@ fun Fragment.showDialog(type: DialogType = DialogType.INFORMATION, title: String
     alertDialog.show()
 }
 
+fun Fragment.showAlertNoPermissions() {
+    AlertDialog.Builder(requireContext())
+        .setMessage("No has concedido los permisos necesarios, " +
+                "habilitalos desde Ajustes si deseas utilizar esta caracteristica.")
+        .setPositiveButton("OK") { dialog,_ ->
+            dialog.dismiss()
+        }.show()
+}
+
 enum class DialogType() {
     INFORMATION,
     CONFIRMATION

@@ -36,11 +36,13 @@ class PopularMoviesFragment : Fragment() {
     private fun initRecyclerView(_listMovies: List<MovieItem>) {
         val recyclerView = _binding!!.rvPopularMovies
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 3)
-        recyclerView.adapter = MovieAdapter(_listMovies.toMutableList())
+        val movieAdapter: MovieAdapter = MovieAdapter()
+        movieAdapter.submitList(_listMovies)
+        recyclerView.adapter = movieAdapter
     }
 
     private fun executeService() {
-        popularMoviesViewModel.getAllPopularMovies(1) {
+        popularMoviesViewModel.getAllPopularMovies() {
             when(it) {
                 GetMoviesStatus.Loading -> binding.progressBar.visibility = View.VISIBLE
                 GetMoviesStatus.Done -> binding.progressBar.visibility = View.INVISIBLE
@@ -52,7 +54,6 @@ class PopularMoviesFragment : Fragment() {
                 is GetMoviesStatus.Success -> initRecyclerView(it.listMovies)
             }
         }
-
     }
 
 

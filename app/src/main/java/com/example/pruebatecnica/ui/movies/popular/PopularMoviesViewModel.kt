@@ -3,7 +3,6 @@ package com.example.pruebatecnica.ui.movies.popular
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnica.domain.GetPopularMovies
-import com.example.pruebatecnica.domain.GetTopRatedMovies
 import com.example.pruebatecnica.domain.getPopularMovies.GetMoviesError
 import com.example.pruebatecnica.domain.getPopularMovies.GetMoviesStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,11 +15,11 @@ class PopularMoviesViewModel @Inject constructor(
     private val getPopularMovies: GetPopularMovies
 ) : ViewModel() {
 
-    fun getAllPopularMovies(page: Int, uiState: (GetMoviesStatus) -> Unit) {
+    fun getAllPopularMovies(uiState: (GetMoviesStatus) -> Unit) {
         uiState(GetMoviesStatus.Loading)
         try {
             viewModelScope.launch {
-                val result = getPopularMovies(page)
+                val result = getPopularMovies()
                 uiState(GetMoviesStatus.Done)
                 if(!result.isNullOrEmpty()) {
                     uiState(GetMoviesStatus.Success(result))

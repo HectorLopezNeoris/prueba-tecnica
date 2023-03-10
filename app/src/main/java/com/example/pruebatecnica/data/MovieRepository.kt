@@ -19,8 +19,8 @@ class MovieRepository @Inject constructor(
      *  POPULAR MOVIES
      */
 
-    suspend fun getPopularMoviesFromApi(page: Int): List<MovieItem> {
-        val response = apiService.getPopularMovies(page)
+    suspend fun getPopularMoviesFromApi(): List<MovieItem> {
+        val response = apiService.getPopularMovies()
         return response?.results?.map { it.toDomain() } as MutableList<MovieItem>
     }
 
@@ -40,8 +40,8 @@ class MovieRepository @Inject constructor(
      *  TOP RATED MOVIES
      */
 
-    suspend fun getTopRatedMoviesFromApi(page: Int): List<MovieItem> {
-        val response = apiService.getTopRatedMovies(page)
+    suspend fun getTopRatedMoviesFromApi(): List<MovieItem> {
+        val response = apiService.getTopRatedMovies()
         return response?.results?.map { it.toDomain() } as MutableList<MovieItem>
     }
 

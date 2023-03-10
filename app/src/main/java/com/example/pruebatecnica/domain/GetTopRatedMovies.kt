@@ -7,8 +7,8 @@ import javax.inject.Inject
 
 class GetTopRatedMovies @Inject constructor(private val movieRepository: MovieRepository) {
 
-    suspend operator fun invoke(page: Int): List<MovieItem> {
-        val movies = movieRepository.getTopRatedMoviesFromApi(page)
+    suspend operator fun invoke(): List<MovieItem> {
+        val movies = movieRepository.getTopRatedMoviesFromApi()
 
         return if(!movies.isNullOrEmpty()) {
             movieRepository.clearTopRatedMovies()

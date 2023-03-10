@@ -24,6 +24,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            buildConfigField("String", "API_KEY", "\"4c1f02035db7bfbf9874097026f0387a\"")
+            buildConfigField("String", "BASE_URL_TMDB", "\"https://api.themoviedb.org/\"")
+            buildConfigField("String", "PATH_IMG_TMDB", "\"https://image.tmdb.org/t/p/w500\"")
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

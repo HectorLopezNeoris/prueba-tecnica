@@ -3,6 +3,8 @@ package com.example.pruebatecnica.ui.movies.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pruebatecnica.R
@@ -10,9 +12,7 @@ import com.example.pruebatecnica.databinding.ItemMovieBinding
 import com.example.pruebatecnica.domain.model.MovieItem
 
 
-class MovieAdapter(
-    private val moviesList: MutableList<MovieItem>
-) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
+class MovieAdapter() : ListAdapter<MovieItem, MovieAdapter.MovieViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -20,12 +20,18 @@ class MovieAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val item = moviesList[position]
-        holder.onBind(item)
+        holder.onBind(getItem(position))
     }
 
-    override fun getItemCount(): Int = moviesList.size
+    object DIFF_CALLBACK: DiffUtil.ItemCallback<MovieItem>() {
+        override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
+            return oldItem.id == newItem.id
+        }
 
+        override fun areContentsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
+            return oldItem.equals(newItem)
+        }
+    }
 
     class MovieViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 

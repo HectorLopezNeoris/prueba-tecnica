@@ -1,5 +1,6 @@
 package com.example.pruebatecnica.domain.model
 
+import com.example.pruebatecnica.BuildConfig
 import com.example.pruebatecnica.core.Credentials
 import com.example.pruebatecnica.data.database.entities.PopularMovieEntity
 import com.example.pruebatecnica.data.database.entities.TopRatedMovieEntity
@@ -14,7 +15,7 @@ data class MovieItem(
 )
 
 fun Movies.toDomain(): MovieItem {
-    val poster = "${Credentials.PATH_IMG_TMDB}${this.posterPath}"
+    val poster = "${BuildConfig.PATH_IMG_TMDB}${this.posterPath}"
     return MovieItem(
         id = id,
         title = title,
@@ -25,7 +26,7 @@ fun Movies.toDomain(): MovieItem {
 }
 
 fun PopularMovieEntity.toDomain(): MovieItem {
-    val poster = "${Credentials.PATH_IMG_TMDB}${this.posterPath}"
+    val poster = "${BuildConfig.PATH_IMG_TMDB}${this.posterPath}"
     return MovieItem(
         id = id,
         title = title,
@@ -36,7 +37,7 @@ fun PopularMovieEntity.toDomain(): MovieItem {
 }
 
 fun TopRatedMovieEntity.toDomain(): MovieItem {
-    val poster = "${Credentials.PATH_IMG_TMDB}${this.posterPath}"
+    val poster = "${BuildConfig.PATH_IMG_TMDB}${this.posterPath}"
     return MovieItem(
         id = id,
         title = title,

@@ -15,6 +15,7 @@ import android.widget.Toast
 import com.example.pruebatecnica.R
 import com.example.pruebatecnica.databinding.FragmentMapsBinding
 import com.example.pruebatecnica.domain.model.LocationItem
+import com.example.pruebatecnica.utils.extension_functions.showAlertNoPermissions
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -36,6 +37,8 @@ import com.karumi.dexter.listener.single.PermissionListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+const val TAG = "LOCATION"
+
 @AndroidEntryPoint
 class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButtonClickListener {
 
@@ -47,6 +50,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
     private lateinit var db: FirebaseFirestore
 
     private lateinit var timer: CountDownTimer
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,21 +68,21 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
         db = FirebaseFirestore.getInstance()
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireContext())
 
+        checkPermissions()
+
         setupListeners()
 
         timer = object : CountDownTimer(180_000, 30_000) {
             override fun onTick(remaining: Long) {
-                Log.i("COORDENADAS", "Quedan {(($remaining/60)/1000)} minutos")
+                Log.i(TAG, "Quedan {(($remaining/60)/1000)} minutos")
             }
 
             override fun onFinish() {
                 getLocation()
-                Log.i("COORDENADAS", "Inicia timer... ${Timestamp(Date())}")
+                Log.i(TAG, "Inicia timer... ${Timestamp(Date())}")
                 timer.start()
             }
         }
-        checkPermissions()
-
     }
 
     private fun checkPermissions() {
@@ -86,20 +90,22 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
         Dexter.withContext(requireContext())
             .withPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
             .withListener(object : PermissionListener {
+                @SuppressLint("MissingPermission")
                 override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    Log.i("COORDENADAS", "Inicia timer... ${Timestamp.now()}")
+                    Log.i(TAG, "Start timer... ${Timestamp.now()}")
                     timer.start()
+                    map.isMyLocationEnabled = true
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(requireContext(), "Permiso denegado", Toast.LENGTH_SHORT).show()
+                    showAlertNoPermissions()
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
                     p0: PermissionRequest?,
                     p1: PermissionToken?
                 ) {
-                    p1?.continuePermissionRequest()
+                    showAlertNoPermissions()
                 }
 
             }).check()
@@ -112,7 +118,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
         mFusedLocationProviderClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 if (location != null) {
-                    Log.i("COORDENADAS", "${location.latitude} - ${location.longitude}")
+                    Log.i(TAG, "${location.latitude} - ${location.longitude}")
                     sendLocationToFirebase(LocationItem(
                         location.latitude,
                         location.longitude,
@@ -126,11 +132,11 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
         db.collection("data")
             .add(location)
             .addOnSuccessListener { documentReference ->
-                Log.d("COORDENADAS", "DocumentSnapshot written with ID: ${documentReference.id}")
+                Log.d(TAG, "DocumentSnapshot written with ID: ${documentReference.id}")
                 getDocuments()
             }
             .addOnFailureListener { e ->
-                Log.w("COORDENADAS", "Error adding document", e)
+                Log.w(TAG, "Error adding document", e)
 
             }
     }
@@ -142,7 +148,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
             .addOnSuccessListener { documents ->
                 map.clear()
                 for (document in documents) {
-                    Log.d("COORDENADAS", "${document.id} => ${document.data}")
+                    Log.d(TAG, "${document.id} => ${document.data}")
                     val latLng = LatLng(
                         document.data.get("latitude") as Double,
                         document.data.get("longitud") as Double
@@ -152,7 +158,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
                 showMessageUpdatedLocations()
             }
             .addOnFailureListener { exception ->
-                Log.w("COORDENADAS", "Error getting documents: ", exception)
+                Log.w(TAG, "Error getting documents: ", exception)
             }
     }
 
@@ -170,7 +176,6 @@ class MapsFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMyLocationButto
         map = googleMap!!
         map.setOnMyLocationButtonClickListener(this)
         getDocuments()
-        map.isMyLocationEnabled = true
     }
 
     override fun onMyLocationButtonClick(): Boolean {

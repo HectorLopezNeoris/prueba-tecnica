@@ -2,7 +2,6 @@ package com.example.pruebatecnica.ui.movies.toprated
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pruebatecnica.domain.GetPopularMovies
 import com.example.pruebatecnica.domain.GetTopRatedMovies
 import com.example.pruebatecnica.domain.getPopularMovies.GetMoviesError
 import com.example.pruebatecnica.domain.getPopularMovies.GetMoviesStatus
@@ -16,11 +15,11 @@ class TopRatedMoviesViewModel @Inject constructor(
     private val getTopRatedMovies: GetTopRatedMovies
 ) : ViewModel() {
 
-    fun getAllTopRatedMovies(page: Int, uiState: (GetMoviesStatus) -> Unit) {
+    fun getAllTopRatedMovies(uiState: (GetMoviesStatus) -> Unit) {
         uiState(GetMoviesStatus.Loading)
         try {
             viewModelScope.launch {
-                val result = getTopRatedMovies(page)
+                val result = getTopRatedMovies()
                 uiState(GetMoviesStatus.Done)
                 if(!result.isNullOrEmpty()) {
                     uiState(GetMoviesStatus.Success(result))

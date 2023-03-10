@@ -7,16 +7,16 @@ import javax.inject.Inject
 
 class ApiService @Inject constructor(private val apiClient: ApiClient) {
 
-    suspend fun getPopularMovies(page: Int): ListMoviesModel? {
+    suspend fun getPopularMovies(): ListMoviesModel? {
         return withContext(Dispatchers.IO) {
-            val response = apiClient.getPopularMovies(page = page)
+            val response = apiClient.getPopularMovies()
             response.body()
         }
     }
 
-    suspend fun getTopRatedMovies(page: Int): ListMoviesModel? {
+    suspend fun getTopRatedMovies(): ListMoviesModel? {
         return withContext(Dispatchers.IO) {
-            val response = apiClient.getTopRatedMovies(page = page)
+            val response = apiClient.getTopRatedMovies()
             response.body()
         }
     }
